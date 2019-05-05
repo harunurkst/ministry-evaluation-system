@@ -18,6 +18,15 @@ class Question(models.Model):
         return self.title
 
 
+class QuestionChoice(models.Model):
+    title = models.CharField(max_length=250)
+    point = models.IntegerField()
+
+    def __str__(self):
+        return self.title
+
+
+
 class VoteCast(models.Model):
     voter = models.ForeignKey(User, on_delete=models.CASCADE)
     ministry = models.ForeignKey(Ministry, on_delete=models.CASCADE)

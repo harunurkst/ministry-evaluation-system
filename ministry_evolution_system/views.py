@@ -30,7 +30,13 @@ def user_login(request):
 
 
 def verify_phone(request):
-    phone_id = request.session["phonelist_lid"]
-    PhoneList.objects.get(id=phone_id)
+    phone_id = request.session["phonelist_id"]
+    phone_obj = VerifyMobile.objects.get(id=phone_id)
+    if request.method == 'POST':
+        otp = request.POST.get('otp', None)
+
+        if str(phone_obj.otp) == otp:
+            request.session["user"] = phone_obj.mobile.mobile_number
+            return redirect('get-ministry')
     
     return render(request, 'verify.html')

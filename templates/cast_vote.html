@@ -12,30 +12,15 @@
                 <label for="">{{ question.title }}</label>
                 <div class="breadcrumb">
                     <div class="form-group">
+                    {% for choice in choices %}
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="{{question.question_no}}" id="exampleRadios1" value="10" checked>
+                            <input class="form-check-input" type="radio" name="{{question.question_no}}" id="exampleRadios1" value={{choice.point}} checked>
                             <label class="form-check-label" for="exampleRadios1">
-                                Default radio
+                                {{ choice.title }}
                             </label>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="{{question.question_no}}" id="exampleRadios1" value="8" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                Default radio
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="{{question.question_no}}" id="exampleRadios1" value="5" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                Default radio
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="{{question.question_no}}" id="exampleRadios1" value="2" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                Default radio
-                            </label>
-                        </div>
+                    {% endfor %}
+                        
                     </div>
                 </div>
             {% endfor %}

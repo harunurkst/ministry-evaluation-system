@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import MinistrySelectForm
-from .models import Ministry, Question, VoteCast
+from .models import Ministry, Question, VoteCast, QuestionChoice
 
 
 def get_ministry(request):
@@ -17,6 +17,7 @@ def cast_vote(request):
         ministry_id = request.session['ministry']
         min_obj = Ministry.objects.get(pk=ministry_id)
         questions = Question.objects.filter(ministry=min_obj)
+        choices = QuestionChoice.objects.all()
         if request.method == 'POST':
             post_data = dict(request.POST)
             del post_data['csrfmiddlewaretoken']
@@ -25,11 +26,11 @@ def cast_vote(request):
             for key, value in post_data.items():
                 total_score += int(value[0])
             vote = VoteCast.objects.create(
-                voter=request.user,
+                voter=request.session["user"],
                 ministry_id=ministry_id,
                 score = total_score
             )
-            print(vote)
-        return render(request, 'cast_vote.html', {'questions': questions})
+        context = {'questions': questions, 'choices': choices}
+        return render(request, 'cast_vote.html', context)
     else:
         return redirect('get-ministry')
