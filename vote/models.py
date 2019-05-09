@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from nid.models import NidInfo
 
 
 class Ministry(models.Model):
@@ -28,9 +29,10 @@ class QuestionChoice(models.Model):
 
 
 class VoteCast(models.Model):
-    voter = models.ForeignKey(User, on_delete=models.CASCADE)
+    voter = models.ForeignKey(NidInfo, on_delete=models.CASCADE)
     ministry = models.ForeignKey(Ministry, on_delete=models.CASCADE)
     score = models.IntegerField()
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.ministry.name

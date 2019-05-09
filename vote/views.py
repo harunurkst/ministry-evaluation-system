@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .forms import MinistrySelectForm
 from .models import Ministry, Question, VoteCast, QuestionChoice
+from nid.models import NidInfo, PhoneList
 
 
 def get_ministry(request):
@@ -25,11 +27,16 @@ def cast_vote(request):
             print(post_data.items())
             for key, value in post_data.items():
                 total_score += int(value[0])
+
+            voter_mobile = request.session["user"]
+            voter_obj = PhoneList.objects.get(mobile_number=voter_mobile)
             vote = VoteCast.objects.create(
-                voter=request.session["user"],
+                voter=voter_obj.nid,
                 ministry_id=ministry_id,
-                score = total_score
+                score=total_score
             )
+            return HttpResponse("Vote cust success")
+
         context = {'questions': questions, 'choices': choices}
         return render(request, 'cast_vote.html', context)
     else:
