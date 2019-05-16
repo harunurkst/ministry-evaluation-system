@@ -30,12 +30,13 @@
                 <a class="nav-link" href="{% url 'get-ministry' %}">Cast Vote</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Result</a>
+                <a class="nav-link" href="{% url 'vote-report' %}">Result</a>
               </li>
               {% endif %}
               
             </ul>
             <form class="form-inline my-2 my-lg-0">
+              <p>Hello, {{ request.session.user}}</p>
               
               {% if request.session.user %}
               <a class="btn btn-outline-danger my-2 my-sm-0" href="{% url 'logout' %}">Logout</a>
