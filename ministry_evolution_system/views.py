@@ -24,9 +24,15 @@ def user_login(request):
 
             except Exception as e:
                 print("not found", str(e))
+                context = {'forms': forms, 'err':'NID and Mobile number doesn\'t match'}
+                return render(request, 'login.html', context)
             
     context = {'forms': forms}
     return render(request, 'login.html', context)
+
+def user_logout(request):
+    del request.session['user']
+    return redirect('home')
 
 
 def verify_phone(request):
@@ -38,5 +44,7 @@ def verify_phone(request):
         if str(phone_obj.otp) == otp:
             request.session["user"] = phone_obj.mobile.mobile_number
             return redirect('get-ministry')
+        context = {'errMsg': 'OTP Doesn\'t match'}
+        return render(request, 'verify.html', context)
     
     return render(request, 'verify.html')

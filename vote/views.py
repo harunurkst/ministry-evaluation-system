@@ -1,3 +1,4 @@
+from datetime import datetime 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import MinistrySelectForm
@@ -9,6 +10,13 @@ def get_ministry(request):
     forms = MinistrySelectForm()
     if request.method == 'POST':
         ministry = request.POST['ministry']
+        
+        current_year = datetime.now().year
+        voter_mobile = request.session["user"]
+        voter_obj = PhoneList.objects.get(mobile_number=voter_mobile)
+        if VoteCast.objects.filter(date__year=current_year, voter=voter_obj.nid, ministry_id=ministry).exists():
+            return render(request, 'get_ministry.html', {'forms': forms, 'errMsg': 'You already voted this ministry'})
+
         request.session['ministry'] = ministry
         return redirect('cast-vote')
     return render(request, 'get_ministry.html', {'forms': forms})

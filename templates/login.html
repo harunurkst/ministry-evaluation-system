@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<a class="btn btn-primary" href="">Login</a>
-<form action="", method="post">
-{% csrf_token %}
-    {{ forms.as_p }}
-    <input type="submit" value="Submit"/>
-</form>
+<div class="col-md-5 m-auto">
+    <form action="", method="post">
+        {% csrf_token %}
+        {{ forms.as_p }}
+        <input type="submit" value="Submit" class="btn btn-primary"/>
+    </form>
+    {% if err %}
+    <div class="alert alert-warning" role="alert">
+         {{err}}
+    </div>
+    {% endif %}
+</div>
 
 {% endblock %}

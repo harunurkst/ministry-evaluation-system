@@ -20,7 +20,9 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('vote/', include('vote.urls')),
-    path('', views.home),
+    path('', views.home, name="home"),
     path('login', views.user_login, name="login"),
+    path('logout', views.user_logout, name="logout"),
+
     path('verify', views.verify_phone, name="verify_phone")
 ]

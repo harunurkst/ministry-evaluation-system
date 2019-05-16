@@ -8,5 +8,5 @@ class MinistrySelectForm(forms.Form):
 
 
 class UserLoginForm(forms.Form):
-    nid_number = forms.CharField()
-    mobile_number = forms.CharField()
+    nid_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    mobile_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
