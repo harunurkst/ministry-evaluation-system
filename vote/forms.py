@@ -13,4 +13,4 @@ class UserLoginForm(forms.Form):
 
 class VoteReportForm(MinistrySelectForm):
     year = forms.IntegerField()
-    area = forms.ModelChoiceField(queryset=Area.objects.all())
+    area = forms.ModelChoiceField(queryset=Area.objects.all(), required=False)
