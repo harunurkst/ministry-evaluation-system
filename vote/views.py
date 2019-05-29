@@ -66,13 +66,16 @@ def vote_report(request):
             year = forms.cleaned_data["year"]
             area = forms.cleaned_data["area"]
             votes = VoteCast.objects.filter(date__year=year, ministry_id=ministry)
-            if area:
-                votes = votes.filter(area=area)
-            total_score = votes.aggregate(total_score=Sum('score'))['total_score']
-            total_voter = votes.count()
-            average = total_score / total_voter
+            if votes:
+                if area:
+                    votes = votes.filter(area=area)
+                total_score = votes.aggregate(total_score=Sum('score'))['total_score']
+                total_voter = votes.count()
+                average = total_score / total_voter
 
-            context = {'forms': forms, 'score':total_score, 'voter':total_voter, 'average':average}
+                context = {'forms': forms, 'score':total_score, 'voter':total_voter, 'average':average}
+            else:
+                context = {'forms': forms, 'errMsg': 'No Vote report found'}
             return render(request, 'vote/vote_report.html', context)
 
     context = {'forms': forms}
