@@ -40,16 +40,20 @@ def cast_vote(request):
                 total_score += int(value[0])
 
             voter_mobile = request.session["user"]
-            voter_obj = PhoneList.objects.get(mobile_number=voter_mobile)
-            area_code = voter_obj.nid.nid_number[:2]
-            area_obj = Area.objects.get(area_code=area_code)
-            vote = VoteCast.objects.create(
-                voter=voter_obj.nid,
-                area=area_obj,
-                ministry_id=ministry_id,
-                score=total_score
-            )
-            return redirect('home')
+            try:
+                voter_obj = PhoneList.objects.get(mobile_number=voter_mobile)
+                area_code = voter_obj.nid.nid_number[:2]
+                area_obj = Area.objects.get(area_code=area_code)
+                vote = VoteCast.objects.create(
+                    voter=voter_obj.nid,
+                    area=area_obj,
+                    ministry_id=ministry_id,
+                    score=total_score
+                )
+                return redirect('home')
+            except Exception as e:
+                context = {'questions': questions, 'choices': choices, 'errMsg': str(e)}
+                return render(request, 'cast_vote.html', context)
 
         context = {'questions': questions, 'choices': choices}
         return render(request, 'cast_vote.html', context)

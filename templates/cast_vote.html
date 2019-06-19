@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<div class="card">
-    <div class="card-header">
-        Submit your Vote here
-    </div>
-    <div class="card-body">
+{% block content-title %} Answer this questions{% endblock %}
+
+
+{% block content-body %}
         <form action="" method="post">
             {% csrf_token %}
             {% for question in questions %}
@@ -26,8 +24,11 @@
             {% endfor %}
             <input type="submit" class="btn btn-primary" value="Submit">
         </form>
-    </div>
 
-</div>
+    {% if errMsg %}
+    <div class="alert alert-warning" role="alert">
+        {{ errMsg }}
+    </div>
+    {% endif %}
 
 {% endblock %}

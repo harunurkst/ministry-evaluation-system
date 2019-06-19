@@ -1,0 +1,10 @@
+<form action="", method="post" class="text-center">
+        {% csrf_token %}
+        {% for field in forms %}
+            <div class="md-form">
+                {{ field.errors }}
+                {{ field }}
+            </div>
+        {% endfor %}
+        <input type="submit" value="Submit" class="btn btn-primary"/>
+    </form>

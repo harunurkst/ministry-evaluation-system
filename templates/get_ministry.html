@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ forms.as_p }}
-    <input type="submit" class="btn btn-primary" value="Submit">
-</form>
-{% if errMsg %}
+{% block content-title %} Select Ministry {% endblock %}
+{% block content-body %}
+    {% include 'forms.html' %}
+
+    {% if errMsg %}
     <div class="alert alert-warning" role="alert">
          {{errMsg}}
     </div>

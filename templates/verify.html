@@ -1,18 +1,21 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<div class="col-md-5 m-auto">
-        <form action="", method="post">
-                {% csrf_token %}
-                   OTP: <input type="number" name="otp" class="form-control">
-                   <input type="submit" value="Submit" class="btn btn-primary"/>
-                </form>
-                
-                {% if errMsg %}
-                    <div class="alert alert-warning" role="alert">
-                         {{errMsg}}
-                    </div>
-                {% endif %}
+{% block content-title %} Enter OTP sent to your mobile {% endblock %}
+
+{% block content-body %}
+    <form action="" method="post" class="text-center">
+        {% csrf_token %}
+        <div class="md-form">
+            <input type="number" name="otp" class="form-control" placeholder="OTP ({{otp}})">
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary"/>
+    </form>
+
+    {% if errMsg %}
+        <div class="alert alert-warning mt-2" role="alert">
+             {{errMsg}}
+        </div>
+    {% endif %}
 </div>
 
 

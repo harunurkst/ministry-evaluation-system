@@ -1,28 +1,41 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ forms.as_p}}
-    <input type="submit" value="Submit" />
-</form>
+{% block content-title %}Result{% endblock %}
+
+{% block content-body %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ forms.as_p}}
+        <input type="submit" value="Submit"  class="btn btn-primary"/>
+    </form>
+
+
+{% endblock %}
+
+{% block result %}
+
 
 {% if score %}
-<table class="table table-boarderd">
-    <tr>
-        <th>Total Voter</th>
-        <th>Total Score</th>
-        <th>Average</th>
-    </tr>
-    <tr>
-        <td>{{voter}}</td>
-        <td>{{score}}</td>
-        <td>{{average}}</td>
-    </tr>
-</table>
-{% else %}
-<div class="alert alert-warning" role="alert">
-{{ errMsg }}
-</div>
-{% endif %}
+    <div class="card mt-2">
+        <div class="card-body">
+            <table class="table table-boarderd">
+                <tr>
+                    <th>Total Voter</th>
+                    <th>Total Score</th>
+                    <th>Average</th>
+                </tr>
+                <tr>
+                    <td>{{voter}}</td>
+                    <td>{{score}}</td>
+                    <td>{{average}}</td>
+                </tr>
+            </table>
+    {% elif errMsg %}
+            <div class="alert alert-warning" role="alert">
+                {{ errMsg }}
+            </div>
+    {% endif %}
+        </div>
+    </div>
+
 {% endblock %}

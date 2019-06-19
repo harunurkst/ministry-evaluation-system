@@ -1,17 +1,14 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<div class="col-md-5 m-auto">
-    <form action="", method="post">
-        {% csrf_token %}
-        {{ forms.as_p }}
-        <input type="submit" value="Submit" class="btn btn-primary"/>
-    </form>
+{% block content-title %}Enter your NID and Phone number {% endblock %}
+
+
+{% block content-body %}
+    {% include 'forms.html' %}
     {% if err %}
     <div class="alert alert-warning" role="alert">
          {{err}}
     </div>
     {% endif %}
-</div>
 
 {% endblock %}

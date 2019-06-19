@@ -7,64 +7,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="{% static 'css/starter-template.css' %}" rel="stylesheet">
-    <title>Hello, world!</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css" rel="stylesheet">
+    <title>MES</title>
     {% block extracss %}
     {% endblock %}
   </head>
-  <body id="page-top">
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-          <a class="navbar-brand" href="{% url 'home' %}">Ministry Eveluation System</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+  <body>
+    {% include 'navbar.html' %}
+      <!--<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">-->
+          <!--<a class="navbar-brand" href="{% url 'home' %}">Ministry Eveluation System</a>-->
+          <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">-->
+            <!--<span class="navbar-toggler-icon"></span>-->
+          <!--</button>-->
+    <!---->
+          <!--<div class="collapse navbar-collapse" id="navbarsExampleDefault">-->
+            <!--<ul class="navbar-nav mr-auto">-->
+              <!--{% if request.session.user %}-->
+              <!--<li class="nav-item ">-->
+                <!--<a class="nav-link" href="{% url 'get-ministry' %}">Cast Vote</a>-->
+              <!--</li>-->
+              <!--<li class="nav-item">-->
+                <!--<a class="nav-link" href="{% url 'vote-report' %}">Result</a>-->
+              <!--</li>-->
+              <!--{% endif %}-->
+              <!---->
+            <!--</ul>-->
+            <!--<form class="form-inline my-2 my-lg-0">-->
+              <!--<p>Hello, {{ request.session.user}}</p>-->
+              <!---->
+              <!--{% if request.session.user %}-->
+              <!--<a class="btn btn-outline-danger my-2 my-sm-0" href="{% url 'logout' %}">Logout</a>-->
+              <!--{% else %}-->
+              <!--<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'login' %}">Login</a>-->
+              <!--{% endif %}-->
+            <!--</form>-->
+          <!--</div>-->
+        <!--</nav>-->
     
-          <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
-              </li>
-              {% if request.session.user %}
-              <li class="nav-item ">
-                <a class="nav-link" href="{% url 'get-ministry' %}">Cast Vote</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'vote-report' %}">Result</a>
-              </li>
-              {% endif %}
-              
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <p>Hello, {{ request.session.user}}</p>
-              
-              {% if request.session.user %}
-              <a class="btn btn-outline-danger my-2 my-sm-0" href="{% url 'logout' %}">Logout</a>
-              {% else %}
-              <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'login' %}">Login</a>
-              {% endif %}
-            </form>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 mx-auto">
+              <div class="card">
+                  <h5 class="card-header info-color white-text text-center py-4">
+                      <strong>{% block content-title %}{% endblock %}</strong>
+                  </h5>
+                  <div class="card-body px-lg-5 pt-0">
+                      {% block content-body %} {% endblock %}
+                  </div>
+              </div>
+              {% block result %}
+              {% endblock %}
+            </div>
           </div>
-        </nav>
-    
-        <main role="main" class="container">
-    
-          <div class="starter-template">
-            
-            {% block content %}
-            {% endblock %}
-          </div>
-    
-        </main><!-- /.container -->
-    
-      
- 
-
+        </div><!-- /.container -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/js/mdb.min.js"></script>
   </body>
 </html>

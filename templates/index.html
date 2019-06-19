@@ -1,52 +1,110 @@
-{% extends 'base.html' %}
+{% extends 'base-home.html' %}
 
 
 {% block extracss %}
 {% load static %}
 <!-- Custom styles for this template -->
-  <link href="{% static 'css/scrolling-nav.css' %}" rel="stylesheet">
+  <!--<link href="{% static 'css/scrolling-nav.css' %}" rel="stylesheet">-->
 {% endblock %}
 
 {% block content %}
 
 
-  <!-- Navigation -->
-  
+    <!--Main Navigation-->
 
-  <header class="bg-primary text-white">
-    <div class="container text-center">
-      <h1>Ministry Evaluation System</h1>
-      <p class="lead">An online evaluation system for ministry of a state/country by the citizens of this State</p>
-    </div>
-  </header>
+    <!--Main Navigation-->
 
-  <section id="about">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2>About this page</h2>
-          <p class="lead">Minister Evaluation System (MES) is an online evaluation
+    <!--Main layout-->
+    <main class="mt-5 pt-5">
+        <div class="container">
+
+            <!--Section: Jumbotron-->
+            <section class="card wow fadeIn" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
+
+                <!-- Content -->
+                <div class="card-body text-white text-center py-5 px-5 my-5">
+
+                    <h1 class="mb-4">
+                        <strong>Ministry Evaluation System</strong>
+                    </h1>
+
+                    <p class="mb-4">
+                        Minister Evaluation System (MES) is an online evaluation
            system for ministry of a state/country by the citizens of this State.
-           Focused on ensuring the accountabilities of each ministry which helps 
+           Focused on ensuring the accountabilities of each ministry which helps
            to develop better democracy. The people interaction, review and opinion
-            should have been Reducing corruption.
-          </p>
-          
+            should have been Reducing corruption..
+                    </p>
+                    <a  href="{% url 'login' %}" class="btn btn-outline-white btn-lg">Start Voting
+                        <i class="fas fa-graduation-cap ml-2"></i>
+                    </a>
+
+                </div>
+                <!-- Content -->
+            </section>
+            <!--Section: Jumbotron-->
+
+            <hr class="my-5">
+
+            <!--Section: Cards-->
+
+            <!--Section: Cards-->
+
         </div>
-      </div>
-    </div>
-  </section>
+    </main>
+    <!--Main layout-->
 
-  
+    <!--Footer-->
+    <footer class="fixed-bottom page-footer text-center font-small mdb-color darken-2 mt-4 wow fadeIn">
 
-  
+        <!--Call to action-->
 
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Md Amir Hamza Robel</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+        <!--/.Call to action-->
 
+        <hr class="my-4">
+
+        <!-- Social icons -->
+        <div class="pb-4">
+            <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+                <i class="fab fa-facebook-f mr-3"></i>
+            </a>
+
+            <a href="https://twitter.com/MDBootstrap" target="_blank">
+                <i class="fab fa-twitter mr-3"></i>
+            </a>
+
+            <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
+                <i class="fab fa-youtube mr-3"></i>
+            </a>
+
+            <a href="https://plus.google.com/u/0/b/107863090883699620484" target="_blank">
+                <i class="fab fa-google-plus-g mr-3"></i>
+            </a>
+
+            <a href="https://dribbble.com/mdbootstrap" target="_blank">
+                <i class="fab fa-dribbble mr-3"></i>
+            </a>
+
+            <a href="https://pinterest.com/mdbootstrap" target="_blank">
+                <i class="fab fa-pinterest mr-3"></i>
+            </a>
+
+            <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
+                <i class="fab fa-github mr-3"></i>
+            </a>
+
+            <a href="http://codepen.io/mdbootstrap/" target="_blank">
+                <i class="fab fa-codepen mr-3"></i>
+            </a>
+        </div>
+        <!-- Social icons -->
+
+        <!--Copyright-->
+        <div class="footer-copyright py-3">
+            © 2019 Copyright:
+            <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com </a>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
 {% endblock %}
